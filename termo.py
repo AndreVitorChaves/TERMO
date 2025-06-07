@@ -1,11 +1,12 @@
 import random
+import colorama
+colorama.init()
 
-# Lista de palavras possíveis
 palavras = ['carro', 'celular', 'futebol', 'computador', 'sapato', 'melancia']
-palavra_sorteada = random.choice(palavras).lower()  # Escolhe uma palavra aleatória
+palavra_sorteada = random.choice(palavras).lower() 
 tamanho = len(palavra_sorteada)
 
-tentativas = 6  # Número máximo de tentativas
+tentativas = 6  
 
 print("Bem-vindo ao TERMO!")
 print(f"A palavra tem {tamanho} letras. Você tem {tentativas} tentativas.")
@@ -19,15 +20,14 @@ while tentativas > 0:
 
     resultado = ''
     for i in range(tamanho):
+        letra = tentativa[i].upper()
         if tentativa[i] == palavra_sorteada[i]:
-            # Letra correta no lugar certo (verde)
-            resultado += f'🟩{tentativa[i].upper()}'
+            resultado += colorama.Fore.GREEN + letra + colorama.Fore.RESET
         elif tentativa[i] in palavra_sorteada:
-            # Letra correta no lugar errado (amarelo)
-            resultado += f'🟨{tentativa[i].upper()}'
+            resultado += colorama.Fore.YELLOW + letra + colorama.Fore.RESET
         else:
             # Letra errada (cinza)
-            resultado += f'⬜{tentativa[i].upper()}'
+            resultado += colorama.Fore.WHITE + letra + colorama.Fore.RESET
 
     print(f"Resultado: {resultado}")
 
